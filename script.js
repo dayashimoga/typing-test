@@ -91,6 +91,13 @@ typingInput.addEventListener('input',e=>{
     if(state.charIndex>=state.text.length)finishTest();
   }
 });
+typingInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&state.difficulty==='code'){
+    e.preventDefault();
+    typingInput.value+='\n';
+    typingInput.dispatchEvent(new Event('input'));
+  }
+});
 $$('#durationBtns button').forEach(btn=>btn.addEventListener('click',()=>{$$('#durationBtns button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');state.duration=parseInt(btn.dataset.val);renderText();}));
 $$('#difficultyBtns button').forEach(btn=>btn.addEventListener('click',()=>{$$('#difficultyBtns button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');state.difficulty=btn.dataset.val;renderText();}));
 $('#restartBtn').addEventListener('click',renderText);
