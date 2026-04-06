@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test — Test & Improve Your WPM | QuickUtils</title>
+    <meta name="description" content="Free online typing speed test. Measure your WPM, accuracy, and track your progress with daily challenges and competitive leaderboards.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://typing.quickutils.top">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>">
+    <meta property="og:title" content="Typing Speed Test — Free Online WPM Test">
+    <meta property="og:description" content="Test your typing speed and accuracy. Track progress with daily challenges.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://typing.quickutils.top">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5193703345853377" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TYPING00001"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-TYPING00001');</script>
+</head>
+<body>
+    <div class="bg-particles" id="particles"></div>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="brand">⌨️ <span>TypingTest</span></a>
+            <div class="nav-links">
+                <a href="#practice" class="active">Practice</a>
+                <a href="#history">History</a>
+                <a href="#leaderboard">Leaderboard</a>
+                <a href="https://ko-fi.com/dayatin" target="_blank" rel="noopener" class="kofi-link">☕ Support</a>
+                <a href="https://quickutils.top" target="_blank" rel="noopener">QuickUtils</a>
+            </div>
+            <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero" id="practice">
+            <h1>Test Your <span class="gradient-text">Typing Speed</span></h1>
+            <p class="hero-sub">Measure WPM & accuracy. Track your progress. Beat your records.</p>
+        </section>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Duration</label>
+                <div class="btn-group" id="durationBtns">
+                    <button data-val="15">15s</button>
+                    <button data-val="30" class="active">30s</button>
+                    <button data-val="60">60s</button>
+                    <button data-val="120">2m</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Difficulty</label>
+                <div class="btn-group" id="difficultyBtns">
+                    <button data-val="easy" class="active">Easy</button>
+                    <button data-val="medium">Medium</button>
+                    <button data-val="hard">Hard</button>
+                    <button data-val="code">Code</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="typing-arena glass-card">
+            <div class="stats-bar">
+                <div class="stat"><span class="stat-label">WPM</span><span class="stat-value" id="wpmDisplay">0</span></div>
+                <div class="stat"><span class="stat-label">Accuracy</span><span class="stat-value" id="accuracyDisplay">100%</span></div>
+                <div class="stat"><span class="stat-label">Time</span><span class="stat-value" id="timeDisplay">30</span></div>
+                <div class="stat"><span class="stat-label">Chars</span><span class="stat-value" id="charDisplay">0</span></div>
+            </div>
+            <div class="text-display" id="textDisplay"></div>
+            <input type="text" class="typing-input" id="typingInput" placeholder="Click here and start typing..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div class="arena-actions">
+                <button class="btn btn-primary" id="restartBtn">🔄 Restart</button>
+                <button class="btn btn-secondary" id="newTextBtn">📝 New Text</button>
+            </div>
+        </section>
+
+        <section class="results-card glass-card" id="resultsCard" style="display:none;">
+            <h2>🏆 Results</h2>
+            <div class="results-grid">
+                <div class="result-item"><div class="result-number" id="finalWpm">0</div><div class="result-label">WPM</div></div>
+                <div class="result-item"><div class="result-number" id="finalAccuracy">0%</div><div class="result-label">Accuracy</div></div>
+                <div class="result-item"><div class="result-number" id="finalChars">0</div><div class="result-label">Characters</div></div>
+                <div class="result-item"><div class="result-number" id="finalErrors">0</div><div class="result-label">Errors</div></div>
+            </div>
+            <div class="result-chart-container"><canvas id="wpmChart"></canvas></div>
+            <button class="btn btn-primary" id="tryAgainBtn">Try Again</button>
+        </section>
+
+        <section class="history-section glass-card" id="history">
+            <h2>📊 Your Progress</h2>
+            <div class="history-stats">
+                <div class="history-stat"><span class="hs-label">Best WPM</span><span class="hs-value" id="bestWpm">-</span></div>
+                <div class="history-stat"><span class="hs-label">Avg WPM</span><span class="hs-value" id="avgWpm">-</span></div>
+                <div class="history-stat"><span class="hs-label">Tests Taken</span><span class="hs-value" id="testCount">0</span></div>
+                <div class="history-stat"><span class="hs-label">Streak</span><span class="hs-value" id="streak">0 🔥</span></div>
+            </div>
+            <div class="chart-container"><canvas id="historyChart"></canvas></div>
+        </section>
+
+        <section class="leaderboard-section glass-card" id="leaderboard">
+            <h2>🏅 Daily Leaderboard</h2>
+            <p class="section-hint">Top scores are stored locally. Challenge yourself!</p>
+            <table class="lb-table">
+                <thead><tr><th>#</th><th>WPM</th><th>Accuracy</th><th>Duration</th><th>Date</th></tr></thead>
+                <tbody id="lbBody"></tbody>
+            </table>
+        </section>
+
+        <section class="info-section">
+            <h2>How to Improve Your Typing Speed</h2>
+            <div class="info-grid">
+                <div class="info-card"><h3>🎯 Focus on Accuracy</h3><p>Speed comes with practice, but accuracy builds the foundation. Aim for 97%+ accuracy before pushing speed.</p></div>
+                <div class="info-card"><h3>👆 Proper Finger Placement</h3><p>Use the home row (ASDF JKL;) as your base. Each finger has assigned keys — learn them and your speed will skyrocket.</p></div>
+                <div class="info-card"><h3>📅 Daily Practice</h3><p>Just 10 minutes a day can improve your WPM by 20+ in a month. Consistency beats intensity.</p></div>
+                <div class="info-card"><h3>👀 Don't Look Down</h3><p>Train yourself to type without looking at the keyboard. This is the single biggest factor in typing speed improvement.</p></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand"><span>⌨️ Typing Speed Test</span><p>Part of the <a href="https://quickutils.top">QuickUtils</a> network.</p></div>
+            <div class="footer-links-grid">
+                <div><h4>QuickUtils Network</h4>
+                    <a href="https://quickutils.top">Home</a>
+                    <a href="https://tools.quickutils.top">Tools</a>
+                    <a href="https://facts.quickutils.top">Daily Facts</a>
+                    <a href="https://regex.quickutils.top">Regex</a>
+                    <a href="https://focus.quickutils.top">Pomodoro</a>
+                </div>
+                <div><h4>Legal</h4>
+                    <a href="https://quickutils.top/privacy.html">Privacy</a>
+                    <a href="https://quickutils.top/terms.html">Terms</a>
+                    <a href="https://ko-fi.com/dayatin" target="_blank">☕ Support Us</a>
+                </div>
+            </div>
+            <p class="copyright">© 2026 QuickUtils. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>kofiWidgetOverlay.draw('dayatin',{'type':'floating-chat','floating-chat.donateButton.text':'Support Us','floating-chat.donateButton.background-color':'#ff5e5b','floating-chat.donateButton.text-color':'#fff'});</script>
+</body>
+</html>
