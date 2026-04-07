@@ -83,3 +83,22 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .footer-links-grid a:hover{color:var(--accent)}
 .copyright{width:100%;text-align:center;color:var(--text-muted);font-size:0.8rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
 @media(max-width:768px){.nav-links{display:none}.stats-bar,.results-grid,.history-stats{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:1.75rem}.footer-links-grid{flex-direction:column;gap:1.5rem}}
+
+/* Ghost Race */
+.ghost-race-bar{margin-top:0.75rem;padding:0.5rem 1rem;background:var(--bg-surface);border-radius:8px;border:1px solid var(--border);display:flex;align-items:center;gap:1rem}
+.ghost-race-bar .ghost-label{font-size:0.75rem;color:var(--text-muted);white-space:nowrap}
+.ghost-progress-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.ghost-progress-track .ghost-fill{height:100%;background:rgba(239,68,68,0.5);border-radius:3px;width:0;transition:width 0.5s}
+.ghost-delta{font-size:0.8rem;font-weight:700;font-family:var(--mono);white-space:nowrap}
+.ghost-delta.ahead{color:var(--correct)}
+.ghost-delta.behind{color:var(--incorrect)}
+
+/* Keyboard Heatmap */
+.keyboard-heatmap{display:flex;flex-direction:column;align-items:center;gap:6px;padding:1rem 0}
+.kb-row{display:flex;gap:6px;justify-content:center}
+.kb-key{width:52px;height:52px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border);transition:all 0.2s;cursor:default}
+.kb-key:hover{transform:scale(1.1);box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.kb-letter{font-weight:700;font-size:0.95rem;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,0.3)}
+.kb-acc{font-size:0.55rem;color:rgba(255,255,255,0.8);margin-top:1px}
+@media(max-width:480px){.kb-key{width:32px;height:40px}.kb-letter{font-size:0.7rem}.kb-acc{display:none}}
+
